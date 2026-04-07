@@ -103,6 +103,34 @@ Airport, Alpines, Bank, CityStreet_LG, Garage, Import_Export, Island_Dawn, MeatP
 | Deathmatch | R6Game.R6DeathMatch |
 | Lone Wolf | R6Game.R6LoneWolfGame |
 
+## Custom Maps
+
+To add custom maps, create a custom/ directory next to your docker-compose.yml and drop all map files in — any type, all mixed together. The entrypoint sorts them into the correct game directories at startup.
+
+    mkdir custom
+    cp /path/to/MyMap.rsm custom/
+    cp /path/to/MyMap_T.utx custom/
+    docker compose down
+    docker compose up -d
+
+Supported file types:
+
+| Extension | Destination | Description |
+|-----------|-------------|-------------|
+|.rsm | maps/ | Map files |
+|.ini | maps/ | Map metadata |
+|.utx | textures/ | Texture packages |
+|.usx | staticmeshes/ | Static mesh packages |
+|.u | System/ | Code/script packages |
+|.int | System/ | Localization files |
+|.ukx | animations/ | Animation packages |
+|.uax | sounds/ | Sound packages |
+|.sb0 | sounds/ | Sound bank files |
+|.tph | template/ | Hostage placement templates |
+|.tpt | template/ | Terrorist placement templates |
+
+Downloadable files (maps, textures, meshes, sounds, animations) are automatically copied to the redirect server for fast downloads. Remember to add custom maps to your MAPS list in.env.
+
 ## Managing Your Server
 
 ### View logs
