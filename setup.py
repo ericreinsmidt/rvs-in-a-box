@@ -45,6 +45,12 @@ def banner():
     print("=" * 60)
     print()
 
+owns_game = prompt_yn("DISCLAIMER: You MUST own a legitimate copy of\n  Raven Shield to use this. Do you own the game?", default="n")
+if not owns_game:
+    print("\n  Please purchase Raven Shield before using RVS In A Box.")
+    print("  https://store.steampowered.com/app/19830/Tom_Clancys_Rainbow_Six_3_Gold/")
+    print()
+    sys.exit(0)
 
 def prompt(label, default=None, required=False, secret=False):
     if default is not None:
