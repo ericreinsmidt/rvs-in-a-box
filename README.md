@@ -136,7 +136,7 @@ Airport, Alpines, Bank, CityStreet_LG, Garage, Import_Export, Island_Dawn, MeatP
 ### Dashboard shows No UDP response
 
 - The game server may still be starting — wait 30 seconds and refresh
-- Verify SERVER_BEACON_PORT in.env matches the beacon port (default 8777)
+- Verify `SERVER_BEACON_PORT` in `.env` matches the beacon port (default 8777)
 
 ### Players get Downloading but it hangs
 
