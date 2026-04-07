@@ -50,9 +50,9 @@ Running `setup.py` generates three files:
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| SERVER_NAME | Raven Shield Server | Server name shown in the game lobby |
-| MOTD | Welcome! Have fun and play fair. | Message of the day |
-| SERVER_IDENT | rvs1 | Unique identifier for stats tracking |
+| `SERVER_NAME` | Raven Shield Server | Server name shown in the game lobby |
+| `MOTD` | Welcome! Have fun and play fair. | Message of the day |
+| `SERVER_IDENT` | rvs1 | Unique identifier for stats tracking |
 
 #### Passwords
 
