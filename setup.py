@@ -164,6 +164,7 @@ def write_compose(config):
     lines.append("      " + chr(45) + chr(32) + ".env")
     lines.append("    volumes:")
     lines.append("      - redirect-files:/srv/redirect")
+    lines.append("      " + chr(45) + chr(32) + "./custom:/custom")
     lines.append("")
     lines.append("  rvsdash:")
     lines.append(f"    image: {REGISTRY}/rvs-dash:latest")
