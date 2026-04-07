@@ -312,6 +312,10 @@ def main():
     write_compose(config)
     write_caddyfile()
 
+    # Create custom maps directory
+    custom_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "custom")
+    os.makedirs(custom_path, exist_ok=True)
+
     print()
     print("=" * 60)
     print()
