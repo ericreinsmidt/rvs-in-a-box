@@ -105,10 +105,15 @@ Airport, Alpines, Bank, CityStreet_LG, Garage, Import_Export, Island_Dawn, MeatP
 
 ## Custom Maps
 
-To add custom maps, drop all map files into the custom/ directory (created by setup.py) — any type, all mixed together. The entrypoint sorts them into the correct game directories at startup.
+To add custom maps, drop files into the custom/ directory (created by setup.py). You can drop in .7z or .zip archives directly — they are automatically extracted at startup. Or drop in loose files of any type, all mixed together. The entrypoint sorts everything into the correct game directories.
 
-    cp /path/to/MyMap.rsm custom/
-    cp /path/to/MyMap_T.utx custom/
+    cp /path/to/MyMapPack.7z custom/
+    docker compose down
+    docker compose up -d
+
+Or with loose files:
+
+    cp /path/to/MyMap.rsm /path/to/MyMap_T.utx custom/
     docker compose down
     docker compose up -d
 
