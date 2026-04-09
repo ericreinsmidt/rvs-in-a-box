@@ -1,6 +1,6 @@
 # RVS In A Box
 
-A complete Raven Shield dedicated server, web dashboard, and fast download server - deployed with a single command. No compiling, no game files, no Windows required.
+A complete Raven Shield dedicated server, web dashboard, and fast download server - deployed with a single command. No Windows, no Wine config, no manual file set up.
     
     Disclaimer: You MUST own a legitimate copy of the game to use this.
 
@@ -12,7 +12,9 @@ A complete Raven Shield dedicated server, web dashboard, and fast download serve
 
 ## Prerequisites
 
-- A Linux host with [Docker](https://docs.docker.com/engine/install/) installed
+- An x86_64 Linux host with [Docker](https://docs.docker.com/engine/install/) installed (ARM is not supported)
+- Minimum 512 MB RAM, 1 CPU core (full stack uses ~220 MB RAM at idle)
+- ~6.5 GB of disk space (grows with custom maps and stats data)
 - A static public IP or domain name
 - The following ports forwarded to your host:
 
@@ -20,7 +22,7 @@ A complete Raven Shield dedicated server, web dashboard, and fast download serve
 |------|----------|---------|
 | 7777 | UDP | Game traffic |
 | 8777 | UDP | Server beacon (N4Admin) |
-| 9777 | UDP | Beacon response |
+| 9777 | UDP | Client beacon port |
 | 80 | TCP | Fast downloads + redirect server |
 | 2003 | TCP | Dashboard (configurable) |
 
@@ -162,6 +164,13 @@ Downloadable files (maps, textures, meshes, sounds, animations) are automaticall
 
 ### Reconfigure
 
+**Quick changes** — edit `.env` directly, then restart:
+
+    docker compose down
+    docker compose up -d
+
+**Full reconfigure** — re-run the setup wizard (overwrites `.env`, `docker-compose.yml`, and `Caddyfile`):
+
     python3 setup.py
     docker compose down
     docker compose up -d
@@ -194,11 +203,24 @@ Downloadable files (maps, textures, meshes, sounds, animations) are automaticall
 
 - The server may need to be manually registered at openrvs.org
 
+## Security
+
+The RVSDash admin page (`http://your-ip:2003/admin`) has **no built-in authentication**. Anyone who can reach the dashboard port can kick players, ban users, change maps, and restart the server.
+
+The status and stats pages are read-only and safe to expose publicly.
+
+If your server is internet-facing, restrict access to the admin page using one of:
+
+- [Cloudflare Access](https://developers.cloudflare.com/cloudflare-one/applications/) — identity-aware access control
+- Reverse proxy with IP allowlisting (nginx/Caddy)
+- VPN — only expose the dashboard on a private network
+- Firewall rules — restrict port 2003 to trusted IPs
+
 ## Credits
 
-- [OpenRVS](https://github.com/OpenRVS-devs/OpenRVS) - Twi, Will, Tony, and the OpenRVS community
+- [OpenRVS](https://github.com/OpenRVS-devs/OpenRVS) - .Twi, Will, Tony, and the OpenRVS community
 - N4Admin and URLPost - Neil Popplewell (Neo4E656F), copyright 2003-2004
-- [N4IDMod](https://dateranoth.com) - Dateranoth and.Twi, copyright 2020
+- [N4IDMod](https://dateranoth.com) - Dateranoth and .Twi, copyright 2020
 - [OpenRenderFix](https://github.com/OpenRVS-devs/OpenRVS) - OpenRVS team
 - [RVSDash](https://github.com/ericreinsmidt/RVSDash) - Eric Reinsmidt
 
