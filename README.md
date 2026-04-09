@@ -103,6 +103,21 @@ Airport, Alpines, Bank, CityStreet_LG, Garage, Import_Export, Island_Dawn, MeatP
 | Deathmatch | R6Game.R6DeathMatch |
 | Lone Wolf | R6Game.R6LoneWolfGame |
 
+## Optional Mods
+
+RVS In A Box includes three optional server-side mods that can be enabled during setup:
+
+| Mod | Description |
+|-----|-------------|
+| 200 Ammo | Doubles ammo capacity for all weapons |
+| Run N Gun | Removes the speed penalty when firing weapons |
+| Santa Hat | Holiday cosmetic that adds santa hats to players |
+
+Mods are toggled during setup.py. To change them later, edit the MOD_ variables in .env and restart:
+
+    docker compose down
+    docker compose up -d
+
 ## Custom Maps
 
 To add custom maps, drop files into the custom/ directory (created by setup.py). You can drop in .7z or .zip archives directly — they are automatically extracted at startup. Or drop in loose files of any type, all mixed together. The entrypoint sorts everything into the correct game directories.

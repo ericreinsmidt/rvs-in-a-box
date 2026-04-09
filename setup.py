@@ -134,6 +134,11 @@ def write_env(config):
         f"RVSDASH_PORT={config['rvsdash_port']}",
         f"REDIRECT_URL=http://{config['public_ip']}/",
         "",
+        "# --- Optional Mods ---",
+        f"MOD_RUNNGUN={'true' if config['mod_runngun'] else 'false'}",
+        f"MOD_SANTAHAT={'true' if config['mod_santahat'] else 'false'}",
+        f"MOD_AMMO200={'true' if config['mod_ammo200'] else 'false'}",
+        "",
         "# --- Site Branding ---",
         f"SITE_TITLE={config['site_title']}",
         f"SITE_HEADING={config['site_heading']}",
@@ -282,6 +287,11 @@ def main():
     site_title = prompt("Site Title (browser tab)", default=server_name)
     site_heading = prompt("Site Heading (page header)", default=server_name)
 
+    print("\n  --- Optional Mods ---\n")
+    mod_runngun = prompt_yn("Enable Run N Gun? (removes speed penalty when firing)", default="n")
+    mod_santahat = prompt_yn("Enable Santa Hat? (holiday cosmetic for players)", default="n")
+    mod_ammo200 = prompt_yn("Enable 200 Ammo? (doubles ammo capacity)", default="n")
+
     config = {
         "server_name": server_name,
         "motd": motd,
@@ -306,6 +316,9 @@ def main():
         "server_ident": server_ident,
         "site_title": site_title,
         "site_heading": site_heading,
+        "mod_runngun": mod_runngun,
+        "mod_santahat": mod_santahat,
+        "mod_ammo200": mod_ammo200,
     }
 
     write_env(config)
