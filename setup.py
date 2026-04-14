@@ -178,7 +178,7 @@ def write_compose(config):
     lines.append("    ports:")
     lines.append(f'      - "{config["rvsdash_port"]}:2003"')
     lines.append("    volumes:")
-    lines.append("      - rvsdash-data:/app/app/data")
+    lines.append("      " + chr(45) + chr(32) + "./data:/app/app/data")
     lines.append("    env_file:")
     lines.append("      " + chr(45) + chr(32) + ".env")
     lines.append("    environment:")
@@ -205,7 +205,6 @@ def write_compose(config):
     lines.append("      - ravenshield")
     lines.append("")
     lines.append("volumes:")
-    lines.append("  rvsdash-data:")
     lines.append("  redirect-files:")
     lines.append("")
 
@@ -328,6 +327,9 @@ def main():
     # Create custom maps directory
     custom_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "custom")
     os.makedirs(custom_path, exist_ok=True)
+
+    data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+    os.makedirs(data_path, exist_ok=True)
 
     print()
     print("=" * 60)

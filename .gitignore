@@ -2,3 +2,5 @@
 docker-compose.yml
 Caddyfile
 .DS_Store
+data/
+custom/
