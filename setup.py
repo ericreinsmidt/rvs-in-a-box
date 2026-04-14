@@ -203,8 +203,6 @@ def write_compose(config):
     lines.append("    depends_on:")
     lines.append("      - ravenshield")
     lines.append("")
-    lines.append("volumes:")
-    lines.append("")
 
     compose_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "docker-compose.yml")
     with open(compose_path, "w") as f:
