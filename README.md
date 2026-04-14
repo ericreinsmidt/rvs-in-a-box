@@ -8,7 +8,7 @@ A complete Raven Shield dedicated server, web dashboard, and fast download serve
 
 - **Game Server** - Raven Shield 1.60 running via Wine with OpenRVS, N4Admin, URLPost, and N4IDMod
 - **Dashboard** - Live server status, player statistics, round history, and remote administration via [RVSDash](https://github.com/ericreinsmidt/RVSDash)
-- **Fast Downloads** - Caddy-powered HTTP redirect server for custom maps and textures
+- **Fast Downloads** - Caddy serves custom maps and mod files directly from the custom/ directory for fast client downloads
 
 ## Prerequisites
 
@@ -38,13 +38,15 @@ The setup script will walk you through server configuration and generate all nec
 
 ## Configuration
 
-Running `setup.py` generates three files:
+Running `setup.py` generates three files and two directories:
 
-| File | Purpose |
-|------|---------|
+| File / Directory | Purpose |
+|------------------|---------|
 | `.env` | All server settings - edit this to reconfigure |
 | `docker-compose.yml` | Container definitions - no need to edit |
 | `Caddyfile` | Redirect server config - no need to edit |
+| `custom/` | Drop custom maps and archives here |
+| `data/` | RVSDash stats database and audit log (persists across restarts) |
 
 ### Settings Reference
 
@@ -150,7 +152,24 @@ Supported file types:
 |`.tph` | template/ | Hostage placement templates |
 |`.tpt` | template/ | Terrorist placement templates |
 
-Downloadable files (maps, textures, meshes, sounds, animations) are automatically copied to the redirect server for fast downloads. Remember to add custom maps to your MAPS list in `.env`.
+The custom/ directory is served directly by Caddy for fast HTTP downloads. Players connecting to your server will automatically download custom files from here. Enabled mod files are also copied into custom/ at startup so players can download them.
+
+Remember to add custom maps to your MAPS list in `.env`.
+
+## Data and Backups
+
+RVSDash stores player stats, round history, and an audit log in the data/ directory:
+
+| File | Description |
+|------|-------------|
+| `data/rvsstats.sqlite3` | SQLite database with all player stats and round history |
+| `data/ingest.ndjson` | Newline-delimited JSON audit log of every round received |
+
+To back up your stats, copy the data/ directory:
+
+    cp -r data/ /path/to/backup/
+
+The data/ directory persists across container restarts and image updates. It is only removed if you manually delete it or the rvs-in-a-box/ directory.
 
 ## Managing Your Server
 
