@@ -1,5 +1,9 @@
 # RVS In A Box
 
+[![Release](https://img.shields.io/github/v/release/ericreinsmidt/rvs-in-a-box?style=for-the-badge&color=dd3333)](https://github.com/ericreinsmidt/nextui-ledoh/releases)
+[![Downloads](https://img.shields.io/github/downloads/ericreinsmidt/rvs-in-a-box/total?style=for-the-badge&color=22aa44)](https://github.com/ericreinsmidt/nextui-ledoh/releases)
+[![License](https://img.shields.io/github/license/ericreinsmidt/rvs-in-a-box?style=for-the-badge&color=3366cc)](LICENSE)
+
 A complete Raven Shield dedicated server, web dashboard, and fast download server - deployed with a single command. No Windows, no Wine config, no manual file set up.
     
     Disclaimer: You MUST own a legitimate copy of the game to use this.
