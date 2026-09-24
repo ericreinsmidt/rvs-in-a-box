@@ -1,5 +1,7 @@
 # RVS In A Box
 
+> **Retired (September 2026).** This project is no longer maintained and no longer works as written. The Docker images it installs were hosted at `registry.rvsinabox.com`, which has been shut down, so `docker compose pull` will fail. The repository is kept read-only for reference. The Raven Shield map archive is still available at [rvsinabox.com](https://rvsinabox.com).
+
 A complete Raven Shield dedicated server, web dashboard, and fast download server - deployed with a single command. No Windows, no Wine config, no manual file set up.
     
     Disclaimer: You MUST own a legitimate copy of the game to use this.
@@ -124,7 +126,7 @@ Mods are toggled during setup.py. To change them later, edit the MOD_ variables 
 
 ## Custom Maps
 
-To add custom maps, drop files into the custom/ directory (created by setup.py). You can drop in .7z or .zip archives directly — they are automatically extracted at startup. Or drop in loose files of any type, all mixed together. The entrypoint sorts everything into the correct game directories.
+To add custom maps, drop files into the custom/ directory (created by setup.py). You can drop in .7z or .zip archives directly - they are automatically extracted at startup. Or drop in loose files of any type, all mixed together. The entrypoint sorts everything into the correct game directories.
 
     cp /path/to/MyMapPack.7z custom/
     docker compose down
@@ -183,12 +185,12 @@ The data/ directory persists across container restarts and image updates. It is 
 
 ### Reconfigure
 
-**Quick changes** — edit `.env` directly, then restart:
+**Quick changes** - edit `.env` directly, then restart:
 
     docker compose down
     docker compose up -d
 
-**Full reconfigure** — re-run the setup wizard (overwrites `.env`, `docker-compose.yml`, and `Caddyfile`):
+**Full reconfigure** - re-run the setup wizard (overwrites `.env`, `docker-compose.yml`, and `Caddyfile`):
 
     python3 setup.py
     docker compose down
@@ -230,10 +232,10 @@ The status and stats pages are read-only and safe to expose publicly.
 
 If your server is internet-facing, restrict access to the admin page using one of:
 
-- [Cloudflare Access](https://developers.cloudflare.com/cloudflare-one/applications/) — identity-aware access control
+- [Cloudflare Access](https://developers.cloudflare.com/cloudflare-one/applications/) - identity-aware access control
 - Reverse proxy with IP allowlisting (nginx/Caddy)
-- VPN — only expose the dashboard on a private network
-- Firewall rules — restrict port 2003 to trusted IPs
+- VPN - only expose the dashboard on a private network
+- Firewall rules - restrict port 2003 to trusted IPs
 
 ## Credits
 
